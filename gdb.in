@@ -1,5 +1,6 @@
 file main.elf
 target remote :3333
+set logging on
 set $osp = $sp
 set $sp = $sp - 16
 b main.c:4
