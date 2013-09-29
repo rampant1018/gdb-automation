@@ -4,7 +4,7 @@ target remote :3333
 set $osp = $sp
 set $sp = $sp - 32
 set logging on
-b main.c:4
+b main.c:5
 c
 call RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA | RCC_APB2Periph_AFIO, ENABLE)
 call RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART2, ENABLE)
@@ -12,11 +12,7 @@ restore settings.dump binary 0x20004ff0
 call GPIO_Init(GPIOA, $osp)
 call USART_Init(USART2, $osp - 16)
 call USART_Cmd(USART2, ENABLE)
-call USART_SendData(USART2, 'H')
-call USART_SendData(USART2, 'e')
-call USART_SendData(USART2, 'l')
-call USART_SendData(USART2, 'l')
-call USART_SendData(USART2, 'o')
-call USART_SendData(USART2, '!')
-call USART_SendData(USART2, '\n')
-call USART_SendData(USART2, '\r')
+while(*hello != '\0')
+call USART_SendData(USART2, *hello)
+set hello = hello + 1
+end
