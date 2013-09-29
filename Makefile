@@ -40,9 +40,8 @@ qemudbg: main.bin
 		-gdb tcp::3333 -S \
 		-kernel main.bin
 gdbauto: main.bin
-	pkill -9 qemu-system-arm
 	$(QEMU_STM32) -M stm32-p103 \
-		-gdb tcp::3333 -S \
+		-gdb tcp::3333 -S\
 		-serial stdio\
 		-kernel main.bin -monitor null &
 	$(CROSS_COMPILE)gdb -x gdb.in
