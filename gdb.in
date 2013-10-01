@@ -16,5 +16,3 @@ while(*hello)
 call USART_SendData(USART2, *hello)
 set hello = hello + 1
 end
-detach
-quit
