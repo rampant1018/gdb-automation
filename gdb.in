@@ -12,7 +12,9 @@ restore settings.dump binary 0x20004ff0
 call GPIO_Init(GPIOA, $osp)
 call USART_Init(USART2, $osp - 16)
 call USART_Cmd(USART2, ENABLE)
-while(*hello != '\0')
+while(*hello)
 call USART_SendData(USART2, *hello)
 set hello = hello + 1
 end
+detach
+quit
